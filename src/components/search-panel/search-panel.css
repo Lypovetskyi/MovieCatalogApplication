@@ -1,0 +1,19 @@
+
+.search-panel {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #3d5a80;
+    border-radius: 4px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+

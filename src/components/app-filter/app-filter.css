@@ -1,0 +1,114 @@
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.genre-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-control {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-control:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-arrow {
+  margin-left: 5px;
+}
+
+.genre-list {
+  margin-top: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.genre-list li {
+  cursor: pointer;
+}
+
+.genre-list li:hover {
+  font-weight: bold;
+}
+
+.movie-list {
+  margin-top: 20px;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.movie-item {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.movie-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.movie-details {
+  margin-top: 10px;
+}
+
+.movie-title {
+  margin: 0;
+}
+
+.movie-rating {
+  margin: 5px 0;
+}
+
+.movie-release-date {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.movie-description {
+  margin-top: 10px;
+}
+
+.load-more-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.load-more-button:hover {
+  background-color: #e0e0e0;
+}
+.btn-container {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+
+
+

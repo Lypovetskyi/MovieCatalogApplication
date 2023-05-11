@@ -1,0 +1,84 @@
+ 
+ .app-info {
+    padding: 25px;
+    background-color: #3d5a80;
+    border-radius: 4px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
+    color: #FFF;
+ }
+ .app-info {
+  text-align: center;
+}
+
+.app-info-title {
+  font-family: Arial, sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+
+/* Мобильная адаптация для ширины 820px */
+@media screen and (max-width: 820px) {
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+  .btn {
+    width: 100%;
+  }
+.btn-group {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 1;
+}
+}
+
+/* Мобильная адаптация для ширины 720px */
+@media screen and (max-width: 720px) {
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+  .btn {
+    width: 100%;
+  }
+.btn-group {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 1;
+}
+}
+
+/* Мобильная адаптация для ширины 390px */
+@media screen and (max-width: 390px) {
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+  .btn {
+    width: 100%;
+  }
+.btn-group {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 1;
+}
+}
+
+/* Мобильная адаптация для ширины 375px */
+@media screen and (max-width: 375px) {
+  .btn-container {
+    margin-bottom: 0;
+    text-align: center;
+  }
+    .btn-group {
+    justify-content: center;
+  }
+}

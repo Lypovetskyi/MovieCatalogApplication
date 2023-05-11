@@ -34,43 +34,7 @@ const AppFilter = () => {
     }
   }, [selectedCategory]);
 
-  return (
-    <div className="btn-group">
-      <div className="btn-container">
-        <button className="btn btn-light" type="button" onClick={handleAllFilmsClick}>
-          All films
-        </button>
 
-        <button className={`btn btn-light${selectedCategory === 28 ? ' active' : ''}`} onClick={(e) => handleCategoryClick(28, e)}>
-          Сейчас смотрят
-        </button>
-        <button className={`btn btn-light${selectedCategory === 35 ? ' active' : ''}`} onClick={(e) => handleCategoryClick(35, e)}>
-          Популярное
-        </button>
-        <button className={`btn btn-light${selectedCategory === 27 ? ' active' : ''}`} onClick={(e) => handleCategoryClick(27, e)}>
-          Ожидают выхода
-        </button>
-      </div>
-      
-      <div className="movie-list">
-        {movies.map((movie) => (
-          <div key={movie.id} className="movie-item">
-            <img
-              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-              alt={movie.title}
-              className="movie-image"
-            />
-            <div className="movie-details">
-              <h3 className="movie-title">{movie.title}</h3>
-              <p className="movie-overview">{movie.overview}</p>
-              <p className="movie-release-date">Release Date: {movie.release_date}</p>
-              <p className="movie-rating">Rating: {movie.vote_average}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 };
 
 export default AppFilter;

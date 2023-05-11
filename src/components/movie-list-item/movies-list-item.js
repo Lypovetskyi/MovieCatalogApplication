@@ -83,19 +83,19 @@ const MovieList = () => {
           className={`btn btn-light${selectedCategory === 'now_playing' ? ' active' : ''}`}
           onClick={() => handleCategoryClick('now_playing')}
         >
-          Сейчас смотрят
+          Watching now
         </button>
         <button
           className={`btn btn-light${selectedCategory === 'popular' ? ' active' : ''}`}
           onClick={() => handleCategoryClick('popular')}
         >
-          Популярное
+          Popular
         </button>
         <button
           className={`btn btn-light${selectedCategory === 'upcoming' ? ' active' : ''}`}
           onClick={() => handleCategoryClick('upcoming')}
         >
-          Ожидают вызова
+          Waiting for release
         </button>
       </div>
       <ul className="movie-grid">

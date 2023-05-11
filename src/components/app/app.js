@@ -25,7 +25,7 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="app background">
       <AppInfo />
 
       {/* <SearchPanel onSearch={handleSearch} /> */}

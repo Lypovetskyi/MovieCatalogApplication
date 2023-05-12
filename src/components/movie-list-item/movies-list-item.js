@@ -33,9 +33,9 @@ const MovieList = () => {
       const movieData = response.data.results.slice(0, 9);
 
       if (currentPage === 1) {
-        setMovies(movieData); // Replace the movie array with the new array
+        setMovies(movieData);
       } else {
-        setMovies((prevMovies) => [...prevMovies, ...movieData]); // Append new movies to the end of the array
+        setMovies((prevMovies) => [...prevMovies, ...movieData]);
       }
     } catch (error) {
       console.error(error);
@@ -48,10 +48,21 @@ const MovieList = () => {
 
   const handleMovieClick = async (movieId) => {
     try {
-      const response = await axios.get(
+      const movieResponse = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=a5d75395ceae9b1ed5c71acb259b6337`
       );
-      setSelectedMovie(response.data);
+
+      const creditsResponse = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=a5d75395ceae9b1ed5c71acb259b6337`
+      );
+
+      const selectedMovie = {
+        ...movieResponse.data,
+        director: creditsResponse.data.crew.find((person) => person.job === "Director"),
+        cast: creditsResponse.data.cast,
+      };
+
+      setSelectedMovie(selectedMovie);
     } catch (error) {
       console.error(error);
     }
@@ -64,6 +75,7 @@ const MovieList = () => {
   const handleCategoryClick = async (category) => {
     setSelectedCategory(category);
     setPage(1);
+    setMovies([]); // Очистка списка фильмов перед загрузкой новых данных
   };
 
     return (
@@ -73,31 +85,32 @@ const MovieList = () => {
         <SearchPanel onSearch={handleSearch} />
       </div>
       <div className="btn-group">
-        <button
-          className={`btn btn-light${selectedCategory === '' ? ' active' : ''}`}
-          onClick={() => handleCategoryClick('')}
-        >
-          All Films
-        </button>
-        <button
-          className={`btn btn-light${selectedCategory === 'now_playing' ? ' active' : ''}`}
-          onClick={() => handleCategoryClick('now_playing')}
-        >
-          Watching now
-        </button>
-        <button
-          className={`btn btn-light${selectedCategory === 'popular' ? ' active' : ''}`}
-          onClick={() => handleCategoryClick('popular')}
-        >
-          Popular
-        </button>
-        <button
-          className={`btn btn-light${selectedCategory === 'upcoming' ? ' active' : ''}`}
-          onClick={() => handleCategoryClick('upcoming')}
-        >
-          Waiting for release
-        </button>
-      </div>
+  <button
+    className={`btn btn-light${selectedCategory === '' ? ' active' : ''}`}
+    onClick={() => handleCategoryClick('')}
+  >
+    All Films
+  </button>
+  <button
+    className={`btn btn-light${selectedCategory === 'now_playing' ? ' active' : ''}`}
+    onClick={() => handleCategoryClick('now_playing')}
+  >
+    Watching now
+  </button>
+  <button
+    className={`btn btn-light${selectedCategory === 'popular' ? ' active' : ''}`}
+    onClick={() => handleCategoryClick('popular')}
+  >
+    Popular
+  </button>
+  <button
+    className={`btn btn-light${selectedCategory === 'upcoming' ? ' active' : ''}`}
+    onClick={() => handleCategoryClick('upcoming')}
+  >
+    Waiting for release
+  </button>
+</div>
+
       <ul className="movie-grid">
         {movies.map((movie) => (
           <li key={movie.id} className="movie-item" onClick={() => handleMovieClick(movie.id)}>
@@ -114,7 +127,7 @@ const MovieList = () => {
                 <h4>Description:</h4>
                 <p>{selectedMovie.overview}</p>
                 <h4>Director:</h4>
-                <p>{selectedMovie.director || 'Unknown'}</p>
+                <p>{selectedMovie.director ? selectedMovie.director.name : 'Unknown'}</p>
                 <h4>Cast:</h4>
                 <ul>
                   {selectedMovie.cast ? (

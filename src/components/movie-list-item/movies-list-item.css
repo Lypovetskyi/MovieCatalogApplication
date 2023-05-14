@@ -17,6 +17,36 @@ html {
 .movie-list-title {
   margin: 25px 0;
 }
+.modal-header {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  column-gap: 25px;
+  
+}
+.list-cast-item {
+  max-height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  justify-content: center;
+}
+
+.list-cast-item li {
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+
+
+
+
+.movie-description {
+  text-align: center;
+  margin: 0 auto;
+  display: center;
+  justify-content: center;
+}
 
 .movie-list h2 {
   font-family: 'Times New Roman',  sans-serif;
@@ -30,6 +60,11 @@ html {
   position: relative;
   margin: 0;
   animation: colorChange 7s infinite;
+}
+.movie-image {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @keyframes colorChange {

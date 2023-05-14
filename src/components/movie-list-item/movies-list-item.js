@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './movies-list-item.css';
 import SearchPanel from '../search-panel/search-panel';
-import { Pagination } from 'react-bootstrap';
+import { Pagination, Modal } from 'react-bootstrap';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -11,6 +11,7 @@ const MovieList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [totalPages, setTotalPages] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     fetchMovies(page);
@@ -67,6 +68,7 @@ const MovieList = () => {
       };
 
       setSelectedMovie(selectedMovie);
+      setShowPopup(true);
     } catch (error) {
       console.error(error);
     }
@@ -80,6 +82,13 @@ const MovieList = () => {
     setSelectedCategory(category);
     setPage(1);
     setMovies([]);
+    setSelectedMovie(null);
+    setShowPopup(false);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedMovie(null);
+    setShowPopup(false);
   };
 
   return (
@@ -126,28 +135,47 @@ const MovieList = () => {
               <p className="movie-rating">Rating: {movie.vote_average}</p>
             </div>
             <p className="movie-release-date">Release Date: {movie.release_date}</p>
-            {selectedMovie && selectedMovie.id === movie.id && (
+          </li>
+        ))}
+      </ul>
+
+      <Modal show={showPopup} onHide={handleClosePopup} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedMovie && selectedMovie.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedMovie && (
+            <div className="popup-body">
+              <div className="movie-image">
+                <img src={`https://image.tmdb.org/t/p/w200/${selectedMovie.poster_path}`} alt={selectedMovie.title} />
+              </div>
               <div className="movie-description">
                 <h4>Description:</h4>
                 <p>{selectedMovie.overview}</p>
                 <h4>Director:</h4>
                 <p>{selectedMovie.director ? selectedMovie.director.name : 'Unknown'}</p>
                 <h4>Cast:</h4>
-                <ul>
+                <ul className="list-cast-item">
                   {selectedMovie.cast ? (
                     selectedMovie.cast.map((actor) => <li key={actor.id}>{actor.name}</li>)
                   ) : (
                     <li>No cast information available</li>
                   )}
                 </ul>
+
               </div>
-            )}
-          </li>
-        ))}
-      </ul>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="popup-close btn btn-dark" onClick={handleClosePopup}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
 
       {totalPages > 1 && (
-        <Pagination className="pagination">
+       <Pagination className="pagination">
           <Pagination.First onClick={() => handlePageChange(1)} disabled={page === 1} />
           <Pagination.Prev onClick={() => handlePageChange(page - 1)} disabled={page === 1} />
           {page > 2 && <Pagination.Ellipsis />}
@@ -168,4 +196,3 @@ const MovieList = () => {
 
 }
   export default MovieList;
-

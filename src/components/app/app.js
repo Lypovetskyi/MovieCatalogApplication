@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import AppInfo from '../app-info/AppInfo';
-// import SearchPanel from '../search-panel/search-panel';
 import AppFilter from '../app-filter/app-filter';
 import MovieList from '../movie-list-item/movies-list-item';
 
@@ -27,9 +26,6 @@ function App() {
   return (
     <div className="app background">
       <AppInfo />
-
-      {/* <SearchPanel onSearch={handleSearch} /> */}
-
       <div className="app-content">
         <AppFilter />
         <MovieList movies={movies} />

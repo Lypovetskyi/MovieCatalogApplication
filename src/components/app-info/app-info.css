@@ -1,28 +1,32 @@
- 
+ .body {
+  font-family: 'Times New Roman',  sans-serif;
+ }
  .app-info {
     padding: 25px;
     background-color: #000000;
     box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
     color: #FFF;
 
-    /* background-image: url(https://media.istockphoto.com/id/1271522601/photo/pop-corn-and-on-red-armchair-cinema.jpg?s=612x612&w=0&k=20&c=XwQxmfrHb-OwV5onPUW5ApB4RaGBK7poSIzZj4q_N_g=);
-    background-repeat: no-repeat;
-    background-size: cover; */
  }
  .app-info {
   text-align: center;
 }
 
 .app-info-title {
-  font-family: Arial, sans-serif;
-  font-size: 45px;
+  font-family: 'Times New Roman',  sans-serif;
+  font-size: 55px;
   font-weight: bold;
-  border-radius: 4px;
+  animation: colorChange 7s infinite;
 }
+
 
 
 /* Мобильная адаптация для ширины 820px */
 @media screen and (max-width: 820px) {
+  .movie-list h2 {
+    font-size: 90px;
+  }
+
 .btn-container {
   display: flex;
   justify-content: center;
@@ -37,6 +41,8 @@
   background-color: #ffffff;
   z-index: 1;
 }
+
+
 }
 
 /* Мобильная адаптация для ширины 720px */
@@ -73,6 +79,10 @@
   background-color: #ffffff;
   z-index: 1;
 }
+  .app-info-title {
+    font-size: 40px;
+    margin: 0 auto;
+  }
 }
 
 /* Мобильная адаптация для ширины 375px */
@@ -83,5 +93,9 @@
   }
     .btn-group {
     justify-content: center;
+  }
+  .app-info-title {
+    font-size: 30px;
+    margin: 0 auto;
   }
 }

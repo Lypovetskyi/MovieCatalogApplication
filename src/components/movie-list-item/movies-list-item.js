@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './movies-list-item.css';
 import SearchPanel from '../search-panel/search-panel';
+import { Pagination } from 'react-bootstrap';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -9,6 +10,7 @@ const MovieList = () => {
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     fetchMovies(page);
@@ -31,9 +33,11 @@ const MovieList = () => {
 
       const response = await axios.get(url);
       const movieData = response.data.results.slice(0, 9);
+      const totalPages = response.data.total_pages;
 
       if (currentPage === 1) {
         setMovies(movieData);
+        setTotalPages(totalPages);
       } else {
         setMovies((prevMovies) => [...prevMovies, ...movieData]);
       }
@@ -42,8 +46,8 @@ const MovieList = () => {
     }
   };
 
-  const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+  const handlePageChange = (selectedPage) => {
+    setPage(selectedPage);
   };
 
   const handleMovieClick = async (movieId) => {
@@ -58,7 +62,7 @@ const MovieList = () => {
 
       const selectedMovie = {
         ...movieResponse.data,
-        director: creditsResponse.data.crew.find((person) => person.job === "Director"),
+        director: creditsResponse.data.crew.find((person) => person.job === 'Director'),
         cast: creditsResponse.data.cast,
       };
 
@@ -75,41 +79,41 @@ const MovieList = () => {
   const handleCategoryClick = async (category) => {
     setSelectedCategory(category);
     setPage(1);
-    setMovies([]); // Очистка списка фильмов перед загрузкой новых данных
+    setMovies([]);
   };
 
-    return (
-    <div className="movie-list ">
+  return (
+    <div className="movie-list">
       <h2>Movie List</h2>
       <div className="search-panel">
         <SearchPanel onSearch={handleSearch} />
       </div>
       <div className="btn-group">
-  <button
-    className={`btn btn-light${selectedCategory === '' ? ' active' : ''}`}
-    onClick={() => handleCategoryClick('')}
-  >
-    All Films
-  </button>
-  <button
-    className={`btn btn-light${selectedCategory === 'now_playing' ? ' active' : ''}`}
-    onClick={() => handleCategoryClick('now_playing')}
-  >
-    Watching now
-  </button>
-  <button
-    className={`btn btn-light${selectedCategory === 'popular' ? ' active' : ''}`}
-    onClick={() => handleCategoryClick('popular')}
-  >
-    Popular
-  </button>
-  <button
-    className={`btn btn-light${selectedCategory === 'upcoming' ? ' active' : ''}`}
-    onClick={() => handleCategoryClick('upcoming')}
-  >
-    Waiting for release
-  </button>
-</div>
+        <button
+          className={`btn btn-light${selectedCategory === '' ? ' active' : ''}`}
+          onClick={() => handleCategoryClick('')}
+        >
+          All Films
+        </button>
+        <button
+          className={`btn btn-light${selectedCategory === 'now_playing' ? ' active' : ''}`}
+          onClick={() => handleCategoryClick('now_playing')}
+        >
+          Watching now
+        </button>
+        <button
+          className={`btn btn-light${selectedCategory === 'popular' ? ' active' : ''}`}
+          onClick={() => handleCategoryClick('popular')}
+        >
+          Popular
+        </button>
+        <button
+          className={`btn btn-light${selectedCategory === 'upcoming' ? ' active' : ''}`}
+          onClick={() => handleCategoryClick('upcoming')}
+        >
+          Waiting for release
+        </button>
+      </div>
 
       <ul className="movie-grid">
         {movies.map((movie) => (
@@ -141,13 +145,27 @@ const MovieList = () => {
           </li>
         ))}
       </ul>
-      {movies.length > 0 && movies.length % 9 === 0 && (
-        <button className="load-more-button" onClick={handleLoadMore}>
-          Load More
-        </button>
+
+      {totalPages > 1 && (
+        <Pagination className="pagination">
+          <Pagination.First onClick={() => handlePageChange(1)} disabled={page === 1} />
+          <Pagination.Prev onClick={() => handlePageChange(page - 1)} disabled={page === 1} />
+          {page > 2 && <Pagination.Ellipsis />}
+          {page > 1 && (
+            <Pagination.Item onClick={() => handlePageChange(page - 1)}>{page - 1}</Pagination.Item>
+          )}
+          <Pagination.Item active>{page}</Pagination.Item>
+          {page < totalPages && (
+            <Pagination.Item onClick={() => handlePageChange(page + 1)}>{page + 1}</Pagination.Item>
+          )}
+          {page < totalPages - 1 && <Pagination.Ellipsis />}
+          <Pagination.Next onClick={() => handlePageChange(page + 1)} disabled={page === totalPages} />
+          <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={page === totalPages} />
+        </Pagination>
       )}
     </div>
   );
-};
 
-export default MovieList;
+}
+  export default MovieList;
+

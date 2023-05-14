@@ -1,13 +1,22 @@
-#root {
-  background-image: url(https://pyxis.nymag.com/v1/imgs/978/4d0/4b4779e1dcb86984abe55c08366f9babe7-13-empty-theater.rsquare.w700.jpg);
+html {
+  margin: 0;
+  background-color: black;
+   
+}
+#root  {
+  /* background-image: url(https://pyxis.nymag.com/v1/imgs/978/4d0/4b4779e1dcb86984abe55c08366f9babe7-13-empty-theater.rsquare.w700.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  align-items: center;
+  align-items: center; */
+  margin: 0 auto;
+  background-color: black;
+  
 }
 
 .movie-list {
   text-align: center;
+  margin: 0 auto;
 }
 
 .movie-list-title {
@@ -15,15 +24,41 @@
 }
 
 .movie-list h2 {
-  font-family: Arial, sans-serif;
-  font-size: 45px;
+  font-family: 'Times New Roman',  sans-serif;
+  font-size: 115px;
   font-weight: bold;
-  border-radius: 4px;
+  padding-top: 140px;
+  padding-bottom: 200px;
+  color: #FFFF;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnPSMKWGqVf_toqEcoKTDl9NS4zDEFPnhfBRRc5S1pVTGUpdGfKdSK4IoPYWFzUk-lZM0&usqp=CAU);
+  background-size: cover;
+  position: relative;
+  margin: 0;
+  animation: colorChange 7s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    color: rgb(102, 32, 32);
+  }
+  25% {
+    color: #FF0000;
+  }
+  50% {
+    color: orange;
+  }
+  /* 75% {
+    color: #0000FF;
+  } */
+  100% {
+    color: rgb(171, 134, 96);
+  }
 }
 
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
   grid-gap: 20px;
   list-style: none;
 }
@@ -82,17 +117,28 @@
   font-size: 14px;
   font-weight: bold;
 }
+
 .movie-description ul {
   text-align: center;
   margin-right: auto;
   margin-left: auto;
 }
+
 .movie-description li {
   list-style-type: none;
 }
 
-.load-more-button {
-  /* display: block; */
+.pagination {
+  justify-content: center;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  margin: 0 auto;
+}
+
+/* .load-more-button {
   margin: 30px auto;
   margin-bottom: 30px;
   padding: 10px 20px;
@@ -112,7 +158,52 @@
 
 .load-more-button:active {
   background-color: #003a80;
+} */
+@media screen and (max-width: 820px) {
+  .movie-list h2 {
+    font-size: 40px;
+  }
+
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .movie-item {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .movie-image img {
+    width: 100%;
+  }
+
+  .movie-list h2 {
+    font-size: 50px;
+  }
+
+  .movie-title {
+    font-size: 12px;
+  }
+
+  .movie-rating {
+    font-size: 10px;
+  }
+
+  .movie-release-date {
+    font-size: 10px;
+  }
+
+  .movie-description {
+    font-size: 10px;
+  }
+
+  .btn-group button {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
 }
+
+
 
 
 @media screen and (max-width: 740px) {
@@ -127,18 +218,38 @@
 
   .movie-image img {
     width: 100%;
+
+  }
+
+  .movie-list h2 {
+    font-size: 40px;
+    padding-top: 60px;
+    background-position: center;
+  }
+
+  .movie-title {
+    font-size: 12px;
+  }
+
+  .movie-rating {
+    font-size: 10px;
+  }
+
+  .movie-release-date {
+    font-size: 10px;
+  }
+
+  .movie-description {
+    font-size: 10px;
   }
 
   .btn-group button {
-    font-size: 12px;
+    font-size: 10px;
     padding: 5px 10px;
   }
 
-  .load-more-button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
 }
+
 
 
 @media screen and (max-width: 390px) {
@@ -155,13 +266,35 @@
     width: 100%;
   }
 
+  .movie-list h2 {
+    font-size: 40px;
+    padding-top: 55px;
+    padding-bottom: 100px;
+  }
+
+  .movie-title {
+    font-size: 10px;
+  }
+
+  .movie-rating {
+    font-size: 8px;
+  }
+
+  .movie-release-date {
+    font-size: 8px;
+  }
+
+  .movie-description {
+    font-size: 8px;
+  }
+
   .btn-group button {
-    font-size: 12px;
+    font-size: 8px;
     padding: 5px 10px;
   }
 
   .load-more-button {
-    font-size: 14px;
+    font-size: 10px;
     padding: 8px 16px;
   }
 }

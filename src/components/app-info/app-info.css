@@ -4,6 +4,10 @@
     background-color: #000000;
     box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
     color: #FFF;
+
+    /* background-image: url(https://media.istockphoto.com/id/1271522601/photo/pop-corn-and-on-red-armchair-cinema.jpg?s=612x612&w=0&k=20&c=XwQxmfrHb-OwV5onPUW5ApB4RaGBK7poSIzZj4q_N_g=);
+    background-repeat: no-repeat;
+    background-size: cover; */
  }
  .app-info {
   text-align: center;

@@ -174,23 +174,20 @@ const MovieList = () => {
         </Modal.Footer>
       </Modal>
 
-      {totalPages > 1 && (
-       <Pagination className="pagination">
-          <Pagination.First onClick={() => handlePageChange(1)} disabled={page === 1} />
-          <Pagination.Prev onClick={() => handlePageChange(page - 1)} disabled={page === 1} />
-          {page > 2 && <Pagination.Ellipsis />}
-          {page > 1 && (
-            <Pagination.Item onClick={() => handlePageChange(page - 1)}>{page - 1}</Pagination.Item>
-          )}
-          <Pagination.Item active>{page}</Pagination.Item>
-          {page < totalPages && (
-            <Pagination.Item onClick={() => handlePageChange(page + 1)}>{page + 1}</Pagination.Item>
-          )}
-          {page < totalPages - 1 && <Pagination.Ellipsis />}
-          <Pagination.Next onClick={() => handlePageChange(page + 1)} disabled={page === totalPages} />
-          <Pagination.Last onClick={() => handlePageChange(totalPages)} disabled={page === totalPages} />
-        </Pagination>
-      )}
+    {totalPages > 1 && (
+      <Pagination className="pagination">
+        <Pagination.Prev onClick={() => handlePageChange(page - 1)} disabled={page === 1} />
+        {page > 1 && (
+          <Pagination.Item onClick={() => handlePageChange(page - 1)}>{page - 1}</Pagination.Item>
+        )}
+        <Pagination.Item active>{page}</Pagination.Item>
+        {page < totalPages && (
+          <Pagination.Item onClick={() => handlePageChange(page + 1)}>{page + 1}</Pagination.Item>
+        )}
+        <Pagination.Next onClick={() => handlePageChange(page + 1)} disabled={page === totalPages} />
+      </Pagination>
+    )}
+
     </div>
   );
 
